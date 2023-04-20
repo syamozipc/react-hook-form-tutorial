@@ -1,7 +1,6 @@
 import './App.css';
 import Headers from './Header';
 import { useForm } from 'react-hook-form';
-import * as React from 'react';
 
 let renderCount = 0;
 
@@ -37,20 +36,7 @@ export default function App() {
   register('test2.0');
 
   // firstName入力の都度、値を取得している（引数を省略するとform全体を監視）
-  // const firstName = watch('firstName');
-  // 第二引数はデフォルト値が可能
-  // console.log(watch('firstName', 'ryota'));
-  // 配列も可能
-  // const firstName = watch(['firstName', 'lastName']);
-
-  // 入力する度に発火する（再レンダリングは走っていない）
-  // useStateに値を持たせてonChangeでsetしていると再レンダリングしまくるので、そうならないのは良さそう
-  React.useEffect(() => {
-    const subscription = watch((data) => console.log(data));
-
-    return () => subscription.unsubscribe();
-    // 依存先にwaitのreturn（ここではfirstName）を持たせると常に発火する挙動になってしまう？
-  }, [watch]);
+  const firstName = watch('firstName');
 
   return (
     <div>
@@ -73,7 +59,7 @@ export default function App() {
           placeholder="First Name"
         />
         {/* 1度submitした後は、入力の度に検証されるので、 リアルタイムで値の妥当性が分かる*/}
-        {/* <p>{firstName}</p> */}
+        <p>{firstName}</p>
         <p>{errors.firstName?.message}</p>
         <input
           {...register('lastName', {
