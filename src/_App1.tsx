@@ -16,24 +16,11 @@ export default function App() {
     defaultValues: {
       firstName: '',
       lastName: '',
-      test: 'test',
-      test1: { data: '' },
-      test2: [''],
-      age: undefined,
     },
   });
   renderCount++;
   // バリデーションエラーが格納されている（バリデーションの種類, 設定したエラーメッセージ, DOM要素）
   console.log(errors);
-
-  // JSXの外でもregister可能
-  // register("test", { required: "This is required" });
-  // より細かく設定
-  register('test', { required: { value: true, message: 'This is required' } });
-  // ドットでobjectをネスト可能
-  register('test1.data');
-  // ドット + 数字で配列を表現可能
-  register('test2.0');
 
   // firstName入力の都度、値を取得している（引数を省略するとform全体を監視）
   const firstName = watch('firstName');
@@ -73,8 +60,6 @@ export default function App() {
           placeholder="Last Name"
         />
         <p>{errors.lastName?.message}</p>
-        {/* 標準ではtypeがnumberでも文字列型だが、number型に変換してくれる */}
-        <input type="number" {...register('age', { valueAsNumber: true })} />
         <input type="submit" />
       </form>
     </div>
