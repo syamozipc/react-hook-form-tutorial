@@ -71,8 +71,9 @@ export default function App() {
                 'yourDetails',
                 { firstName: 'ryota', lastName: 'saito' },
                 {
+                  // dirty（値がdefaultValuesから更新された状態）かどうか見る
                   shouldDirty: true,
-                  // 再レンダリングが走る
+                  // focus/blurイベントを受け取ったか見る（再レンダリングが走る）
                   shouldTouch: true,
                   shouldValidate: true,
                 }
