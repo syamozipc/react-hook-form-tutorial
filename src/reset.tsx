@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import './App.css';
 import Headers from './Header';
 import { useForm } from 'react-hook-form';
-import { getValue } from '@testing-library/user-event/dist/utils';
 
 let renderCount = 0;
 
