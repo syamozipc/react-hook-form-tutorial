@@ -40,13 +40,7 @@ export default function App() {
         renderCount={renderCount}
         description="Performant, flexible and extensible forms with easy-to-use validation."
       />
-      <form
-        // submit時のコールバックを登録（dataで入力値を受け取れる）
-        // リロードされないのでpreventDefaultが呼ばれているっぽい
-        onSubmit={handleSubmit((data) => {
-          reset();
-        })}
-      >
+      <form onSubmit={handleSubmit((data) => reset())}>
         <input {...register('firstName')} placeholder="first name" />
         <input {...register('lastName')} placeholder="last name" />
         {/* resetは引数無しだとフォーム値をdefaultValuesに戻すが、引数ありだとその値にし、defaultValuesも更新する */}

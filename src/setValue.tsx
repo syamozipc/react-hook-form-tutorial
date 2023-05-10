@@ -36,17 +36,8 @@ export default function App() {
         renderCount={renderCount}
         description="Performant, flexible and extensible forms with easy-to-use validation."
       />
-      <form
-        // submit時のコールバックを登録（dataで入力値を受け取れる）
-        // リロードされないのでpreventDefaultが呼ばれているっぽい
-        onSubmit={handleSubmit((data) => {
-          console.log(data);
-        })}
-      >
-        {/* バリデーション通らないとsubmitされない */}
+      <form onSubmit={handleSubmit((data) => console.log(data))}>
         <input
-          // required: trueだけでもOK（エラーメッセージは空文字になる）
-          // {...register("firstName", { required: true })}
           {...register('yourDetails.firstName', {
             required: 'This is required',
             minLength: 3,
@@ -54,8 +45,6 @@ export default function App() {
           placeholder="First Name"
         />
         <input
-          // required: trueだけでもOK（エラーメッセージは空文字になる）
-          // {...register("firstName", { required: true })}
           {...register('yourDetails.lastName', {
             required: 'This is required',
             minLength: 3,
