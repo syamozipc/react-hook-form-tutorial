@@ -1,6 +1,7 @@
 import './App.css';
 import Headers from './Header';
 import { useForm } from 'react-hook-form';
+import { SubmitHandler } from 'react-hook-form/dist/types/form';
 
 let renderCount = 0;
 
@@ -10,7 +11,7 @@ type FormValues = {
 
 export default function App() {
   const { register, handleSubmit } = useForm<FormValues>();
-  const onSubmit = (data: FormValues) => console.log(data);
+  const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data);
   renderCount++;
 
   return (
