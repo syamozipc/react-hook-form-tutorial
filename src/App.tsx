@@ -12,13 +12,14 @@ type FormValues = {
 };
 
 const Controller = ({ control, register, name, rules, render }: any) => {
-  // これやらないとdefault valueが表示されない
+  // useFormStateのwatchと同様だが、違いとしてwatchはroot level、こちらはcustom hook level
   const value = useWatch({
+    // const App内のuseFormから渡しているcontrolなので、そのformを見ている
     control,
     name,
   });
 
-  // バリデーションエラーを取得。formState: { errors } と書いている箇所と同様の挙動
+  // controlによりconst Appのformからバリデーションエラーを取得。formState: { errors } と書いている箇所と同様の挙動
   const { errors } = useFormState({
     control,
     name,
@@ -60,10 +61,11 @@ const Input = (props: any) => {
 };
 
 export default function App() {
+  // controlはcomponentをreact hook formに登録するためのもの（controlのpropertyに直接アクセスしてはいけない）
   const { register, handleSubmit, control, setValue } = useForm<FormValues>({
     defaultValues: {
       firstName: '',
-      lastName: 'test',
+      lastName: 'ryota',
     },
   });
   const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data);
